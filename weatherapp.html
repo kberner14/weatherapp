@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="weatherapp.css">
+
+</head>
+<body>
+    <header>
+       <!--Basic Header, maybe spruce it up a bit later-->
+        <div class="row">
+            <div class="col">
+                <div class="jumbotron jumbotron-fluid">
+                    <div class="container" id="dashboardContainer">
+                      <h1 class="display-5">My Weather Dashboard</h1>
+                      <p class="lead">Where Would You Like to See the Weather?</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!--Need -->
+    </header>
+
+    <main>
+        <!-- Create a row to hold two colomns inside the main section-->
+        <div class="row">
+
+            <!-- First column is about half the width of second-->
+            <!-- Will hold searchbar and city search results in the form of button-->
+            <div class="col-4" id="leftColumn">
+                <div class="row">
+                    
+                    <!-- Need a text element with "search city"-->
+                    <h1>Sample</h1>
+                    <!-- Needs to be a tiny row as far as height is concerned-->
+
+                    <!-- Need a blank space where text can be entered by the user-->
+
+                    <!-- Need a responsive button to click on to trigger search event-->
+                </div>
+                
+                <div class="row">
+                    <!-- Need a container where button elements will show up-->
+                    <h1>Sample</h1>
+                    <!-- Inside container there will be buttons of the searh querys-->
+
+                </div>
+
+                
+            </div>
+
+            <div class="col-8">
+                <div class="row">
+                    <!--Need a container for where all the pertinent information from 
+                        weather API will be displayed. Ideally find something on 
+                        bootstrap with a display name on top and several underlying
+                        categories to be filled with pulled information-->
+                        <div class="card" style="width: 90%;">
+                            <div class="card-body">
+                                <!-- Card title should automatically update from js-->
+                              <h5 class="card-title">Card title</h5>
+                              
+                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                          </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col" id="forecastContainer">
+                        <div class="row">
+                            <div class="col" id="fivedayContainer">
+                                <!--Static statement of 5 day forecast-->
+                            <h1>Five Day Forecast</h1>
+                            </div>
+                            
+                        </div>
+                        <div class="row">
+
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+            </div>
+
+
+
+
+
+        </div>
+
+
+
+
+
+    </main>
+
+
+    <!--Need various basic elements. Check bootstrap-->
+</body>
+</html>

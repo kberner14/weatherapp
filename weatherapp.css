@@ -1,0 +1,11 @@
+#dashboardContainer {
+    text-align: center;
+    height: 40px;
+    padding-bottom: 10px;
+}
+
+#leftColumn {
+    background-color: grey;
+    color:white;
+    text-align: center;
+}
