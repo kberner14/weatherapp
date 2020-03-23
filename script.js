@@ -3,7 +3,7 @@ var apiKey = "98c8d6587120aac4b2819891e6ac8be1"
 var search = "Philadelphia"
 var currentWeatherView = $("#current-weather-view")
 var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=Philadelphia&appid="+apiKey;
-console.log(queryURL)
+
 
 
 
@@ -25,10 +25,10 @@ function yourWeather() {
             windMS: response.wind.speed,
             coordinates: response.coord
         }
-        // console.log(currentWeatherData)
+        console.log(currentWeatherData)
     });
 }
-yourWeather();
+
 
 // UV is a separate API. Need Lat/Long from initial query as coordinates for new query
 function yourUV() {
@@ -47,11 +47,31 @@ function yourUV() {
     }).then(function(response) {
     currentWeatherView.text(JSON.stringify(response, null, 2));
     var cityUV = response.value;
-    console.log("UV Index: " + cityUV );
+    // console.log("UV Index: " + cityUV );
     });
 }
-yourUV();
+// api.openweathermap.org/data/2.5/forecast?q={city name}&appid={your api key}
   // Dump JSON for five day forecast for Philadelphia
+  function yourFiveDay() {
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q="
+    + search
+    + "&appid="
+    + apiKey
+    
+
+    
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function(response) {
+    currentWeatherView.text(JSON.stringify(response, null, 2));
+        
+    });
+}
+
+// yourWeather();
+// yourUV();
+// yourFiveDayForecast();
   
   // Log url for current weather icon to the console
   
