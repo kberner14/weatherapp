@@ -1,8 +1,9 @@
 // have the browser connect with the weather API
 var apiKey = "98c8d6587120aac4b2819891e6ac8be1"
-var search = "Philadelphia"
+var search = document.getElementById("#userSearch").text
+console.log(search)
 var currentWeatherView = $("#current-weather-view")
-var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=Philadelphia&appid="+apiKey;
+var queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+ search+"&appid="+apiKey;
 
 
 
@@ -40,7 +41,6 @@ function yourUV() {
     + "&lon="
     + uvLocation.lon;
 
-    
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -58,8 +58,6 @@ function yourUV() {
     + "&appid="
     + apiKey
     
-
-    
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -69,13 +67,6 @@ function yourUV() {
     });
 }
 
-// yourWeather();
-// yourUV();
-// yourFiveDayForecast();
-  
-  // Log url for current weather icon to the console
-  
-  // Log URLs for 5-day forecast to the console
 
 
 // when a user enters a city

@@ -32,6 +32,13 @@
             <!-- Will hold searchbar and city search results in the form of button-->
             <div class="col-4" id="leftColumn">
                 <div class="row">
+
+                    <nav class="navbar navbar-light bg-light">
+                        <form class="form-inline">
+                          <input class="form-control mr-sm-2" id= "userSearch" type="search" placeholder="Search" aria-label="Search">
+                          <button class="btn btn-outline-success my-2 my-sm-0" id="submit" type="submit">Search</button>
+                        </form>
+                    </nav>
                     
                     <!-- Need a text element with "search city"-->
                     <pre id= "current-weather-view">
@@ -57,13 +64,9 @@
                         categories to be filled with pulled information-->
                         <div class="card" style="width: 90%;">
                             <div class="card-body">
-                                <!-- Card title should automatically update from js-->
-                              <h5 class="card-title">Card title</h5>
+                                <!-- Card should automatically update from JS-->
                               
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
                             </div>
                           </div>
 
@@ -79,19 +82,10 @@
                             
                         </div>
                         <div class="row">
-
                         </div>
                     </div>
-                    
                 </div>
-
-
             </div>
-
-
-
-
-
         </div>
 
 
@@ -99,11 +93,95 @@
 
 
     </main>
-    <script
-    src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-    crossorigin="anonymous"></script>
-    <script src="./script.js"></script>
+    
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+    // have the browser connect with the weather API
+var apiKey = "98c8d6587120aac4b2819891e6ac8be1"
+var search = document.getElementById("#userSearch");
+console.log(search)
+var currentWeatherView = $("#current-weather-view")
+var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=Philadelphia&appid="+apiKey;
+
+
+
+
+
+// Dump JSON for current weather in Philadelphia
+// Icon, temperature, humidity, wind speed, and UV index
+function yourWeather() {
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function(response) {
+        // currentWeatherView.text(JSON.stringify(response, null, 2));
+        // console.log(JSON.stringify(response, null, 2))
+        
+        var cityWeatherData = {
+            cityName: response.name,
+            date: response.dt,
+            icon: response.weather[0].icon,
+            humidityPercent: response.main.humidity,
+            windMS: response.wind.speed,
+            coordinates: response.coord
+        }
+        console.log(currentWeatherData)
+    });
+}
+yourWeather()
+
+
+// UV is a separate API. Need Lat/Long from initial query as coordinates for new query
+function yourUV() {
+    var uvLocation = { lon: -75.16, lat: 39.95 };
+    var queryURL = "https://api.openweathermap.org/data/2.5/uvi?appid="
+    + apiKey
+    + "&lat="
+    + uvLocation.lat
+    + "&lon="
+    + uvLocation.lon;
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function(response) {
+    currentWeatherView.text(JSON.stringify(response, null, 2));
+    var cityUV = response.value;
+    // console.log("UV Index: " + cityUV );
+    });
+}
+// api.openweathermap.org/data/2.5/forecast?q={city name}&appid={your api key}
+  // Dump JSON for five day forecast for Philadelphia
+  function yourFiveDay() {
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q="
+    + search
+    + "&appid="
+    + apiKey
+    
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function(response) {
+    currentWeatherView.text(JSON.stringify(response, null, 2));
+    var cityFiveDay = response.value;
+    console.log(cityFiveDay)
+    });
+}
+
+
+
+
+// when a user enters a city
+// create a div to enter the elements of the city into
+// create variables for city name, and other elements that the API gives you
+// place the variables into the div
+    
+    </script>
+
+    
 
 
     <!--Need various basic elements. Check bootstrap-->
