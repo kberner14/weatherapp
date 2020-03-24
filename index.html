@@ -11,13 +11,13 @@
 <body>
     <header>
        <!--Basic Header, maybe spruce it up a bit later-->
-        <div class="row">
-            <div class="col">
-                <div class="jumbotron jumbotron-fluid">
-                    <div class="container" id="headerContainer">
-                      <h1 class="display-5">My Weather Dashboard</h1>
-                      <p class="lead">Where Would You Like to See the Weather?</p>
-                    </div>
+            <div class="row">
+                <div class="col">
+                    <div class="jumbotron jumbotron-fluid">
+                        <div class="container" id="headerContainer">
+                        <h1 class="display-5">My Weather Dashboard</h1>
+                        <p class="lead">Where Would You Like to See the Weather?</p>
+                        </div>
                 </div>
             </div>
         </div>
@@ -31,29 +31,36 @@
             <!-- First column is about half the width of second-->
             <!-- Will hold searchbar and city search results in the form of button-->
             <div class="col-4" id="leftColumn">
-                <div class="row">
-
-                    <nav class="navbar navbar-light bg-light">
-                        <form class="form-inline">
-                          <input class="form-control mr-sm-2" id= "userSearch" type="search" placeholder="Search" aria-label="Search">
-                          <button class="btn btn-outline-success my-2 my-sm-0" id="submit" type="submit">Search</button>
+                <div class="container">
+                    <div class="row">
+                      <div class="col">
+                        <form class="mt-5" style="max-width: 400px;">
+                          <div class="form-group">
+                            <label for="search"></label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="search"
+                              placeholder="Your City Here"
+                            />
+                          </div>
+                          <button type="submit" class="btn btn-primary">Search</button>
                         </form>
-                    </nav>
-                    
-                    <!-- Need a text element with "search city"-->
-                    <pre id= "current-weather-view">
-
-                    </pre>
-                    <!-- Needs to be a tiny row as far as height is concerned-->
-
-                    <!-- Need a blank space where text can be entered by the user-->
-
-                    <!-- Need a responsive button to click on to trigger search event-->
-                </div>
-                
-               
-
-                
+                      </div>
+                    </div>
+                  </div>
+                  <div class="container mt-5">
+                    <div class="row">
+                      <div class="col">
+                        <h2>Search History</h2>
+                        <div id="search-history"></div>
+                          <button type="button" class="btn btn-primary">
+                              South Lake Tahoe
+                          </button>
+                        
+                      </div>
+                    </div>
+                  </div>                
             </div>
 
             <div class="col-8">
@@ -64,6 +71,10 @@
                         categories to be filled with pulled information-->
                         <div class="card" style="width: 90%;">
                             <div class="card-body">
+                                <p class="Temperature">Temperature: </p>
+                                <p class="Humidity">Humidity: </p>
+                                <p class="Wind Speed">Wind Speed: </p>
+                                <p class="UV Index">UV: </p>
                                 <!-- Card should automatically update from JS-->
                               
 
@@ -78,6 +89,7 @@
                             <div class="col" id="fivedayContainer">
                                 <!--Static statement of 5 day forecast-->
                             <h1>Five Day Forecast</h1>
+                            
                             </div>
                             
                         </div>
@@ -97,17 +109,19 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
         crossorigin="anonymous"></script>
-<script type="text/javascript">
+<script>
 
     // have the browser connect with the weather API
 var apiKey = "98c8d6587120aac4b2819891e6ac8be1"
-var search = document.getElementById("#userSearch");
-console.log(search)
 var currentWeatherView = $("#current-weather-view")
 var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=Philadelphia&appid="+apiKey;
+var searchHistory = ["South Lake Tahoe"];
 
-
-
+// create a new button
+var button = $("<button type='button' class='btn btn-primary'>").text(searchHistory[0]);
+// $(searchHistory).empty()
+//append new button to search history
+$("search-history").prepend(button)
 
 
 // Dump JSON for current weather in Philadelphia
